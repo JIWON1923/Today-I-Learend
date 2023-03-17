@@ -359,3 +359,124 @@ print(user.getBelongs())
   * setMoney라는 함수가 있다고 가정한다면 이것은 프로토콜에 추가해서는 안 된다.
   * 객체의 기본 규약을 정의하는 것이기 때문에 당연히 적용되어야된다고 생각했었다. 하지만 프로토콜로 선언하면 private을 쓸 수 없다. 또한 외부 객체가 알 필요 없는 내부 로직이나 구현 방식에 대한 정보는 포함시키지 않는 것이 맞다. (캡슐화와 정보 은닉)
 
+
+
+## 리팩토링 3 - 단일 책임
+
+{% hint style="danger" %}
+현재 User의 purchaseProduct에서 많은 행위를 책임지고 있다.
+
+물건 판매 책임을 Store로 위임하여 결합도를 낮춰보자.
+
+이에 상품을 판매하는 행위를 추상화하고, 구체적인 로직을 작성해야한다.&#x20;
+{% endhint %}
+
+#### 상점 프로토콜
+
+<pre class="language-swift"><code class="lang-swift"><strong>// store의 역할은 물건을 보여주는 것과 판매하는 것이다.
+</strong><strong>protocol Store {
+</strong>    func showProduct(_ productID: Int) throws -> [String: Any]
+    func sellProduct(_ productID: Int, money: Int) throws
+}
+</code></pre>
+
+#### 상점
+
+```swift
+class SoiStore: Store {
+    private var money: Int = 0
+    var name: String = "쏘이네 가게"
+    private var products: [Int: [String: Any]]
+    
+    init(products: [Int: [String: Any]]) {
+        self.money = 0
+        self.products = products
+    }
+    
+    // 물건을 보여주는 역할
+    func showProduct(_ productID: Int) throws -> [String : Any] {
+        guard let product = products[productID] else {
+            throw NSError(domain: "재고가 없습니다", code: 0)
+        }
+        return product
+    }
+     
+    // 물건을 판매하는 역할
+    func sellProduct(_ productID: Int, money: Int) throws {
+        guard products[productID] != nil else {
+            throw NSError(domain: "재고가 없습니다.", code: 0)
+        }
+        takeMoney(money)
+        takeOutProduct(productID)
+    }
+    
+    private func takeMoney(_ money: Int) {
+        self.money += money
+    }
+    
+    private func takeOutProduct(_ productID: Int) {
+        products.removeValue(forKey: productID)
+    }
+}
+```
+
+#### 손님
+
+```swift
+class User {
+    private var money: Int
+    private var store: Store
+    private var belongs: [Int: [String: Any]]
+    
+    init(money: Int, store: Store) {
+        self.money = money
+        self.store = store
+        self.belongs = [:]
+    }
+    
+    func getStore() -> Store {
+        self.store
+    }
+
+    func getBelongs() -> [Int: [String: Any]] {
+        self.belongs
+    }
+    
+    func seeProduct(_ productID: Int) -> [String: Any]? {
+        try? store.showProduct(productID)
+    }
+    
+    // 판매의 역할은 store에서 처리, 구매만 user가 수행
+    func purchaseProduct(_ productID: Int) throws {
+        guard let product = try? store.showProduct(productID),
+              let price = product["price"] as? Int
+        else { return }
+        
+        guard money >= price else {
+            throw NSError(domain: "잔액이 부족합니다", code: 0)
+        }
+        
+        do {
+            giveMoney(price)
+            try store.sellProduct(productID, money: price)
+            addBelong(productID, product: product)
+        } catch {
+            takeMoney(price)
+        }
+        
+    }
+    
+    private func giveMoney(_ money: Int) {
+        self.money -= money
+    }
+    
+    private func takeMoney(_ money: Int) {
+        self.money += money
+    }
+    
+    private func addBelong(_ id: Int, product: [String: Any]) {
+        self.belongs[id] = product
+    }
+    
+}
+```
