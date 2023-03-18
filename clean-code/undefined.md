@@ -480,3 +480,150 @@ class User {
     
 }
 ```
+
+## 리팩토링 4 - Product의 객체화
+
+{% hint style="info" %}
+Product가 Dictionary로 선언되어있어서 복잡해보일 뿐만 아니라 추후 Product 역시 특정 책임을 갖게 될 수 있으므로 구조체 또는 클래스를 이용해야한다.
+
+또한 함수명으로 코드를 이해할 수 있도록 money>=price 등을 함수로 만드는 것이 좋다.
+{% endhint %}
+
+#### 프로토콜
+
+```swift
+protocol Store {
+    func showProduct(_ productID: Int) throws -> Product
+    func sellProduct(_ productID: Int, money: Int) throws
+}
+```
+
+#### Product 구조체
+
+```swift
+struct Product {
+    let name: String
+    let price: Int
+}
+```
+
+#### Store
+
+```swift
+class SoiStore: Store {
+    private var money: Int = 0
+    var name: String = "쏘이네 가게"
+    private var products: [Int: Product] // 의존성 주입
+    
+    init(products: [Int: Product]) {
+        self.money = 0
+        self.products = products
+    }
+    
+    func showProduct(_ productID: Int) throws -> Product {
+        guard let product = products[productID] else {
+            throw NSError(domain: "재고가 없습니다", code: 0)
+        }
+        return product
+    }
+     
+    func sellProduct(_ productID: Int, money: Int) throws {
+        guard products[productID] != nil else {
+            throw NSError(domain: "재고가 없습니다.", code: 0)
+        }
+        takeMoney(money)
+        takeOutProduct(productID)
+    }
+    
+    private func returnMoney(_ money: Int) {
+        self.money -= money
+    }
+    
+    private func takeMoney(_ money: Int) {
+        self.money += money
+    }
+    
+    private func takeOutProduct(_ productID: Int) {
+        products.removeValue(forKey: productID)
+    }
+}
+```
+
+#### User
+
+```swift
+class User {
+    private var money: Int
+    private var store: Store
+    private var belongs: [Int: Product]
+    
+    init(money: Int, store: Store) {
+        self.money = money
+        self.store = store
+        self.belongs = [:]
+    }
+    
+    func getStore() -> Store {
+        self.store
+    }
+
+    func seeProduct(_ productID: Int) -> Product? {
+        try? store.showProduct(productID)
+    }
+    
+    func purchaseProduct(_ productID: Int) throws {
+        guard let product = try? store.showProduct(productID)
+        else { return }
+        
+        guard checkMoney(product.price) else {
+            throw NSError(domain: "잔액이 부족합니다", code: 0)
+        }
+        
+        do {
+            giveMoney(product.price)
+            try store.sellProduct(productID, money: product.price)
+            addBelong(productID, product: product)
+        } catch {
+            takeMoney(product.price)
+        }
+        
+    }
+    
+    private func checkMoney(_ price: Int) -> Bool {
+        self.money >= price
+    }
+    private func giveMoney(_ money: Int) {
+        self.money -= money
+    }
+    
+    private func takeMoney(_ money: Int) {
+        self.money += money
+    }
+    
+    private func addBelong(_ id: Int, product: Product) {
+        self.belongs[id] = product
+    }
+    
+    func getBelongs() -> [Int: Product] {
+        self.belongs
+    }
+}
+```
+
+#### main
+
+```swift
+let user = User(money: 100000, store: SoiStore(products: [
+    1: Product(name: "키보드", price: 30000),
+    2: Product(name: "모니터", price: 100000)
+]))
+
+do {
+    try user.purchaseProduct(1)
+} catch {
+    print(error.localizedDescription)
+}
+
+print(user.getBelongs())
+
+```
