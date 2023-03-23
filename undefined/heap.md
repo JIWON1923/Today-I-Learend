@@ -122,8 +122,8 @@ struct Heap<T: Comparable> {
         guard !isEmpty() else { return item }
         var (parent, child) = (1, 2)
         
-        while child < size {
-            if getLeft(parent) > getRight(parent) {
+        while child <= size {
+            if child < size && getLeft(parent) > getRight(parent) {
                 child += 1 // 오른쪽 자식이 더 작다면, 2n + 1로 child를 설정한다.
             }
             if last <= heap[child] { break } // 이동할 필요가 없다면 반복문을 종료한다.
