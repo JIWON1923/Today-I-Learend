@@ -107,7 +107,7 @@ struct Heap<T: Comparable> {
         while index > 1 {
             let parent = getParent(index)
             guard data < parent else { break }
-            heap[index] = parent
+            heap[index] = parent              // swap을 사용하지 않고 값만 저장한다.
             index = index / 2
         }
         heap[index] = data
@@ -124,15 +124,15 @@ struct Heap<T: Comparable> {
         
         while child < size {
             if getLeft(parent) > getRight(parent) {
-                child += 1
+                child += 1 // 오른쪽 자식이 더 작다면, 2n + 1로 child를 설정한다.
             }
-            if last <= heap[child] { break }
+            if last <= heap[child] { break } // 이동할 필요가 없다면 반복문을 종료한다.
             heap[parent] = heap[child]
             parent = child
             child *= 2
         }
-        heap[parent] = last
-        return item
+        heap[parent] = last // 마지막 위치에 있던 노드를 새로운 위치에 저장한다.
+        return item // 첫번째 노드를 리턴한다.
     }
 }
 ```
