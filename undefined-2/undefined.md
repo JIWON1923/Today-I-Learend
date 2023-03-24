@@ -144,7 +144,7 @@ pod trunk push JWCarousel.podspec
 
 ### 완성
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/스크린샷 2023-03-19 오전 8.52.25.png" alt=""><figcaption></figcaption></figure>
 
