@@ -89,7 +89,7 @@ description: JWCarousel 라이브러리 만들기
 
 
 
-    <figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
     나는 `View+JWcarousel.swift`, `FramePreferenceKey+JWCarousel`이 Class 폴더 내부에 없어서 발생한 문제였다. (코드의 위치를 몰랐던 것임!)
 
@@ -102,7 +102,7 @@ description: JWCarousel 라이브러리 만들기
 
 
 
-    <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 깃에 프로젝트 등록하기
 
