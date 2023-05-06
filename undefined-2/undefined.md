@@ -12,7 +12,7 @@ description: JWCarousel 라이브러리 만들기
 
     해당 정보를 입력하면, Xcode 프로젝트가 열린다. (안 열린다면 해당 디렉토리 이동해서 직접 열자)
 
-    <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -95,14 +95,14 @@ description: JWCarousel 라이브러리 만들기
 
 
 
-    <figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
     인식 못했던 코드를 여기로 옮겨주고, Xcode에 들어가서 파일 위치를 재설정해준다.
 5.  다시 `pod lib lint` 수행한다.
 
 
 
-    <figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 깃에 프로젝트 등록하기
 

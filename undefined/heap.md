@@ -66,7 +66,7 @@
       * 오른쪽 자식의 위치 = index \* 2 + 1
       * 부모의 위치 = index / 2
 
-      ![](<../.gitbook/assets/image (2).png>)
+      ![](<../.gitbook/assets/image (2) (2).png>)
 
 ### 삽입 연산
 

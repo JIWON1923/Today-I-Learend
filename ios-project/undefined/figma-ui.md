@@ -6,7 +6,7 @@ description: 디자인 및 기능 정의
 
 ### Design
 
-![](<../../.gitbook/assets/image (3).png>)-
+![](<../../.gitbook/assets/image (3) (1).png>)-
 
 ### 기능&#x20;
 
@@ -19,5 +19,5 @@ description: 디자인 및 기능 정의
 
 ### UI 구조 설계
 
-![](<../../.gitbook/assets/image (5).png>)
+![](<../../.gitbook/assets/image (5) (2).png>)
 
