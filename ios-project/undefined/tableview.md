@@ -18,7 +18,7 @@ description: 주간 날씨를 보여주는 Table View를 만들어보자.
 
 (Cocoa Touch Class를 이용해서 생성하며, xib도 같이 생성하자.
 
-![](<../../.gitbook/assets/image (7).png>)
+![](<../../.gitbook/assets/image (7) (1).png>)
 
 
 
@@ -55,7 +55,7 @@ class WeaklyWeatherTableViewCell: UITableViewCell {
 
 **xib의 Attribute Controller에서 id 설정**
 
-![](<../../.gitbook/assets/image (12).png>)
+![](<../../.gitbook/assets/image (12) (1).png>)
 
 
 

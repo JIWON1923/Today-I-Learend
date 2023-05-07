@@ -12,7 +12,7 @@ description: JWCarousel 라이브러리 만들기
 
     해당 정보를 입력하면, Xcode 프로젝트가 열린다. (안 열린다면 해당 디렉토리 이동해서 직접 열자)
 
-    <figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
