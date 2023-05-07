@@ -53,17 +53,6 @@ extension Bundle {
 내가 필요한 데이터는 오늘 (현재 온도, 날씨 아이콘) / 주간 (날짜, 최고 최저 온도, 날씨 아이콘)
 
 ```swift
-import Foundation
-
-/* 필요한 데이터
- 
- 오늘의 날씨 - 현재 온도, 날씨 사진
- 주간 날씨 - 최고 온도, 최저 온도, 날씨 사진
- 
- */
-import Foundation
-
-// MARK: - 주간 날씨 데이터
 struct NetworkData: Codable {
     let cod: String
     let message, cnt: Int
@@ -87,13 +76,15 @@ struct Coord: Codable {
 // MARK: - List
 struct List: Codable {
     let dt: Int
-    let temperature: Temperaturect
+    let temperature: Temperature
     let weather: [Weather]
+    let dtText: String
     
     enum CodingKeys: String, CodingKey {
         case dt
         case temperature = "main"
         case weather
+        case dtText = "dt_txt"
     }
 }
 
@@ -108,13 +99,37 @@ struct Temperature: Codable {
         case tempMax = "temp_max"
         case tempKf = "temp_kf"
     }
+    
+    var celsius: Double {
+        temp - 273.15
+    }
+    
+    var maxCelsius: Double {
+        tempMax  - 273.15
+    }
+    
+    var minCelsius: Double {
+        tempMin - 273.15
+    }
+    
+    var furmula: Double {
+        temp * 9 / 5 - 459.67
+    }
+    
+    var minFurmula: Double {
+        tempMin * 9 / 5 - 459.67
+    }
+    
+    var maxFurmula: Double {
+        tempMax * 9 / 5 - 459.67
+    }
 }
 
 // MARK: - Weather
 struct Weather: Codable {
     let id: Int
     let parameter: Parameter
-    let description: Description
+    let description: String
     let icon: String
     
     enum CodingKeys: String, CodingKey {
@@ -169,8 +184,8 @@ final class NetworkManager {
     typealias NetworkCompletion = (Result<[List], NetworkError>) -> Void
     
     func fetchData(completion: @escaping NetworkCompletion) {
-        performRequest(with:
-            "https://api.openweathermap.org/data/2.5/forecast?lat=37&lon=126&appid=\(Bundle.main.apiKey)") { result in
+        performRequest(with: "https://api.openweathermap.org/data/2.5/forecast?lat=37&lon=126&lang=kr&appid=\(Bundle.main.apiKey)") { result in
+            completion(result)
         }
     }
     
