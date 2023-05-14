@@ -57,7 +57,9 @@
   * [Figma를 이용한 UI 설계](ios-project/undefined/figma-ui.md)
   * [TableView 연결하기](ios-project/undefined/tableview.md)
   * [Networking](ios-project/undefined/networking.md)
-
-***
-
-* [MVVM (in UIKit)](mvvm-in-uikit.md)
+* [MVC -> MVVM으로 구조 변경해보기](ios-project/mvc-greater-than-mvvm/README.md)
+  * [MVC](ios-project/mvc-greater-than-mvvm/mvc.md)
+  * [MVVM](ios-project/mvc-greater-than-mvvm/mvvm.md)
+* [OAuth Project](ios-project/oauth-project/README.md)
+  * [로컬 호스트를 이용한 로그인 페이지 제작](ios-project/oauth-project/undefined.md)
+  * [Github의 OAuth App 설정](ios-project/oauth-project/github-oauth-app.md)
