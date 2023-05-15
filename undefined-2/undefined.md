@@ -14,7 +14,7 @@ description: JWCarousel 라이브러리 만들기
 
     <div align="left">
 
-    <figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
     </div>
 
@@ -148,7 +148,7 @@ pod trunk push JWCarousel.podspec
 
 ### 완성
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/스크린샷 2023-03-19 오전 8.52.25.png" alt=""><figcaption></figcaption></figure>
 

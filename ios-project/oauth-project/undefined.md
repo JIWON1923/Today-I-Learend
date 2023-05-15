@@ -33,4 +33,4 @@
 python -m http.server 8080
 ```
 
-![](<../../.gitbook/assets/image (7).png>)
+![](<../../.gitbook/assets/image (8).png>)
