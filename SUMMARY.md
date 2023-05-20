@@ -66,3 +66,7 @@
 * [OAuth Project](ios-project/oauth-project/README.md)
   * [로컬 호스트를 이용한 로그인 페이지 제작](ios-project/oauth-project/undefined.md)
   * [Github의 OAuth App 설정](ios-project/oauth-project/github-oauth-app.md)
+* [Rest API 프로젝트](ios-project/rest-api/README.md)
+  * [UI설계 (with Figma)](ios-project/rest-api/ui-with-figma.md)
+  * [Network Model](ios-project/rest-api/network-model.md)
+  * [MVVM 구조 전환](ios-project/rest-api/mvvm.md)
