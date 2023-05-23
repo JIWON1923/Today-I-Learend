@@ -1,5 +1,9 @@
 # MVC
 
+이제까지 해 왔던 방법으로 View Controller를 구성해보자.
+
+(우선 UI는 단순한 TableView에 음악 제목을 띄우기만 할 것이다.)
+
 ## ViewController
 
 ```swift
@@ -55,3 +59,17 @@ extension ViewController: UITableViewDataSource {
 }
 
 ```
+
+View Controller의 역할을 보자.
+
+NetworkManager의 인스턴스를 이용해서 직접 request를 하고, 받아온 정보를 tableView에 업데이트 시켜주고 있다.
+
+또한, 뷰에 대한 코드도 가지고 있다.
+
+즉, 지금 View Controller의 역할은 뷰를 그리고, 데이터를 요청한 후 자기 자신의 테이블을 변경하고 있는 모습을 볼 수 있다.
+
+
+
+만약, 사용자가 앱에서 검색을 하고, 그 결과를 받아와야한다면?
+
+View controller는 사용자의 입력을 감지하고, Network Manager에게 검색어에 대한 결과를 요청하고, NetworkManager의 결과를 받아와 Table View를 업데이트 해야한다
