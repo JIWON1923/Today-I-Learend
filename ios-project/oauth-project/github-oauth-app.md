@@ -1,3 +1,3 @@
 # Github의 OAuth App 설정
 
-![](<../../.gitbook/assets/image (21).png>)
+![](<../../.gitbook/assets/image (21) (1).png>)

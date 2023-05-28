@@ -56,10 +56,14 @@
 
 ## iOS Project
 
-* [날씨 조회 어플리케이션](ios-project/undefined/README.md)
-  * [Figma를 이용한 UI 설계](ios-project/undefined/figma-ui.md)
-  * [TableView 연결하기](ios-project/undefined/tableview.md)
-  * [Networking](ios-project/undefined/networking.md)
+* [채팅 앱 만들기](ios-project/undefined/README.md)
+  * [Trouble shooting](ios-project/undefined/trouble-shooting.md)
+  * [1. 디자인](ios-project/undefined/1..md)
+  * [2. AutoLayout](ios-project/undefined/2.-autolayout.md)
+* [날씨 조회 어플리케이션](ios-project/undefined-1/README.md)
+  * [Figma를 이용한 UI 설계](ios-project/undefined-1/figma-ui.md)
+  * [TableView 연결하기](ios-project/undefined-1/tableview.md)
+  * [Networking](ios-project/undefined-1/networking.md)
 * [MVC -> MVVM으로 구조 변경해보기](ios-project/mvc-greater-than-mvvm/README.md)
   * [MVC](ios-project/mvc-greater-than-mvvm/mvc.md)
   * [MVVM](ios-project/mvc-greater-than-mvvm/mvvm.md)

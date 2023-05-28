@@ -52,7 +52,7 @@ description: Xcode에서 제공하는 자동화 테스트 프레임워크 알아
 
 대충 만들어본 travel app [https://github.com/JIWON1923/XCTest/releases/tag/app-version-1.0.0](https://github.com/JIWON1923/XCTest/releases/tag/app-version-1.0.0)
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption><p>프로젝트 만들 때, include tests로 추가하기</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption><p>프로젝트 만들 때, include tests로 추가하기</p></figcaption></figure>
 
 
 
@@ -64,7 +64,7 @@ description: Xcode에서 제공하는 자동화 테스트 프레임워크 알아
 
 
 
-    <figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 2. city function 확인
 
 city함수는 딕셔너리에서 "New York"이라는 키 값이 있다면, 해당 City 구조체 값을 반환하고, 없다면 nil을 리턴하는 함수이다
