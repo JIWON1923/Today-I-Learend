@@ -41,3 +41,36 @@ Main.storyboard에서 storyboard를 관리하지 않고, storyboard reference를
 그래서 storyboard reference를 다시 선언해서 문제를 해결했다. (push로 보여줬던 연결을 끊고 삭제했었다)
 
 ![](<../../.gitbook/assets/image (9).png>)
+
+
+
+#### 추가. 새로운 네비게이션으로 이동하는 방법
+
+```swift
+    // MARK: function
+    private func moveUserListViewController() {
+        let storyboard = UIStoryboard(name: "UserList", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "UserList") as! UserListViewController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
+    // MARK: IBAction
+    @IBAction func didTappedSignInButton(_ sender: UIButton) {
+        
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+            guard let strongSelf = self else { return }
+            
+            if let error {
+                let alert = UIAlertController(title: "오류", message: "오류가 발생했습니다.", preferredStyle: .alert)
+                return
+            }
+            self?.moveUserListViewController()
+        }
+    }
+```
