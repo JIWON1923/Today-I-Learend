@@ -257,7 +257,7 @@ NSErrorFailingURLStringKey
 git update-index --skip-worktree WeatherApp/APIKey.plist 
 ```
 
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 다시 포함시키고 싶을 때
 

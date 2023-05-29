@@ -10,7 +10,7 @@ description: Xcode에서 제공하는 자동화 테스트 프레임워크 알아
 
 ### 피라미드 모델 (Test Pyramid)
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption><p>Test Pyrimid</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption><p>Test Pyrimid</p></figcaption></figure>
 
 #### 단위 테스트 (Unit Test)
 

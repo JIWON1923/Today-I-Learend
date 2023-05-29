@@ -74,3 +74,21 @@ Main.storyboard에서 storyboard를 관리하지 않고, storyboard reference를
         }
     }
 ```
+
+
+
+## Firestore
+
+### FIRInvalidArgumentException', reason: 'Unsupported type: \_\_SwiftValue
+
+* 채팅 방을 생성하기 위해, 참여자를 기준으로 현재 채팅 방이 존재하는지, 존재하지 않는지 확인하기 위해 코드를 작성했다.
+* 그래서 users에 \[currentUser, tableView에서 선택한 user]를 기준으로 chatroom에 존재하는 방이 있는지 코드를 작성했다.
+* 그런데 FIRInvalidArgumentException', reason: 'Unsupported type: \_\_SwiftValue 이 에러가 발생한다;;
+
+
+
+* 결론: 비어있는 collection에 접근했기 때문이다.
+  * chatrooms collection과 documents가 모두 비어있었다.
+  * 그래서 내가 선언한 codable대로 비어있는 데이터 하나를 만들어주니 조회가 잘 된다..... 내 삽질...
+
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
