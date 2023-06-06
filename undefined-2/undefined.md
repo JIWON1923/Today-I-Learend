@@ -99,7 +99,7 @@ description: JWCarousel 라이브러리 만들기
 
 
 
-    <figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
     인식 못했던 코드를 여기로 옮겨주고, Xcode에 들어가서 파일 위치를 재설정해준다.
 5.  다시 `pod lib lint` 수행한다.

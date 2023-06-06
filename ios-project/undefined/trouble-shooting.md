@@ -40,7 +40,7 @@ Main.storyboard에서 storyboard를 관리하지 않고, storyboard reference를
 
 그래서 storyboard reference를 다시 선언해서 문제를 해결했다. (push로 보여줬던 연결을 끊고 삭제했었다)
 
-![](<../../.gitbook/assets/image (9).png>)
+![](<../../.gitbook/assets/image (9) (1).png>)
 
 
 

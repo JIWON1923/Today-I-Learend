@@ -22,7 +22,7 @@ description: Open Weather API를 이용해서 데이터를 받아옵니다.
 
 3. key 딕셔너리 생성
 
-<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Bundle extension 작성
 
