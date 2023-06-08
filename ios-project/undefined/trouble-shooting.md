@@ -92,3 +92,39 @@ Main.storyboard에서 storyboard를 관리하지 않고, storyboard reference를
   * 그래서 내가 선언한 codable대로 비어있는 데이터 하나를 만들어주니 조회가 잘 된다..... 내 삽질...
 
 <figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+### Chat의 변화만 감지할 순 없을까?
+
+우선 위 사진에서 볼 수 있듯 나는 Chat Rooms를 Collection으로 만들었다. 즉, 채팅이 변하면, ChatRoom이 변하게 되는 것이고, 그것에 대한 결과를 보여준 다는 것이다.
+
+이럴 때 어떤 문제가 발생하느냐! 변경된 데이터를 가져와서 tableview를 reload해주기 때문에, 전체 채팅이 새로고침되게 된다. (백문불여일견 영상을 보자)
+
+#### 문제가 된 영상
+
+{% file src="../../.gitbook/assets/Simulator Screen Recording - iPhone 14 Plus - 2023-06-08 at 20.48.48.mp4" %}
+
+#### 문제가 된 코드
+
+```swift
+    func setUpDataListener(id: String, completion: @escaping ([Chat]) -> Void) {
+        let reference = database.collection("chatRooms").document(id)
+        
+        reference.addSnapshotListener {document, error in
+            guard let document, document.exists,
+                  let chatData = document.data()?["chat"] as? [[String: Any]] else {
+                print("invalid format")
+                return
+            }
+            
+            do {
+                let data = try JSONSerialization.data(withJSONObject: chatData, options: [])
+                let chats = try JSONDecoder().decode([Chat].self, from: data)
+                completion(chats)
+            } catch { }
+        }
+    }
+```
+
+reference인 ChatRooms에 snapshot Listner를 달았다. 그래서 Chat이 추가되면, ChatRoom의 변화가 감지되고, 그 결과 chatData에 \["chat"]으로 오는 값들이 추가되게 된다 ㅠ ㅠ
+
+#### 해결해보자!
