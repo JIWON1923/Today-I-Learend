@@ -127,4 +127,69 @@ Main.storyboard에서 storyboard를 관리하지 않고, storyboard reference를
 
 reference인 ChatRooms에 snapshot Listner를 달았다. 그래서 Chat이 추가되면, ChatRoom의 변화가 감지되고, 그 결과 chatData에 \["chat"]으로 오는 값들이 추가되게 된다 ㅠ ㅠ
 
-#### 해결해보자!
+### 해결 방법
+
+#### 쿼리에 listener를 달아보자 -> 실패.. (조금 더 공부해야겠다)
+
+#### listener는 그대로 두되, View Controller에서 새로운 데이터를 추출하는 방식으로 문제를 해결했다.
+
+1. 기존 코드
+
+```swift
+    private func setupChatDataListener() {
+        
+        guard let chattingRoomID = chattingRoom?.uuid else { return }
+        ChatManager.shared.setUpDataListener(id: chattingRoomID) { [weak self] chats in
+            for chat in chats {
+                self?.chatDatas.append(chat)
+                let index = IndexPath(row: (self?.chatDatas.count ?? 0) - 1, section: 0)
+                self?.chattingTableView.insertRows(at: [index], with: .bottom)
+                self?.chattingTableView.scrollToRow(at: index, at: .bottom, animated: true)
+            }
+        }
+    }
+```
+
+기존 코드에서는 새로운 데이터를 모두 불러오고, 기존 Chat data를 새로운 데이터로 변경하는 방식을 사용했었다. 예전엔 몰랐지만 이 코드 쓰면, A, B, C가 있을 때 새로운 D가 들어온다면 A, B, C, A, B, C, D 이런식으로 데이터가 채팅방에 남아있었을 것이다.
+
+2. 새로운 코드
+
+```swift
+    private func setupChatDataListener() {
+
+        guard let chattingRoomID = chattingRoom?.uuid else { return }
+        ChatManager.shared.setUpDataListener(id: chattingRoomID) { [weak self] chats in
+            var newChat = [Chat]()
+            for chat in chats {
+                newChat.append(chat)
+            }
+            
+            newChat = (self?.filterNewChatting(newData: newChat, oldData: self?.chatDatas))!
+            
+            self?.chatDatas.append(contentsOf: newChat)
+            self?.chattingTableView.reloadData()
+            
+            let index = IndexPath(row: (self?.chatDatas.count ?? 1) - 1, section: 0)
+            self?.chattingTableView.scrollToRow(at: index, at: .bottom, animated: true)
+            
+        }
+    }
+    
+    private func filterNewChatting(newData: [Chat], oldData: [Chat]?) -> [Chat] {
+        guard let oldData = oldData else { return [] }
+        var newChat = [Chat]()
+        
+        for chat in newData {
+            if !oldData.contains(chat) {
+                newChat.append(chat)
+            }
+        }
+        return newChat
+    }
+```
+
+기존과 동일하게 Chat Rooms에 있는 모든 데이터를 호출하지만, filterNewChatting이라는 함수를 만들어서 기존 채팅에 없는 채팅만 가져오도록 수정했다.
+
+이를 위해서는 Chat 모델에 Hashable 프로토콜을 사용해야한다. (contains를 사용하기 위해서)
+
+{% file src="../../.gitbook/assets/Simulator Screen Recording - iPhone 14 Plus - 2023-06-09 at 17.31.27.mp4" %}
