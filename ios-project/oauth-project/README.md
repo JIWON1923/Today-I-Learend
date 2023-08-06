@@ -33,7 +33,7 @@ OAuth에는 4개의 참여자가 존재한다. Third party App에 해당하는 *
 
 (아직은 단어가 익숙하지 않아서 헷갈릴 수 있지만, 용어가 익숙해지면 굉장히 쉬울 것이다.)
 
-***
+
 
 #### OAuth 과정
 
@@ -87,7 +87,7 @@ OAuth에는 4개의 참여자가 존재한다. Third party App에 해당하는 *
   +--------+           & Optional Refresh Token        +---------------+
 ```
 
-***
+
 
 #### Refresh token
 
