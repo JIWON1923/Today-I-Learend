@@ -7,6 +7,7 @@
   * [UIKit](wwdc/uikit/README.md)
     * [UIDiffableDataSource](wwdc/uikit/uidiffabledatasource/README.md)
       * [\[WWDC 19\] Advances in UI Data Sources](wwdc/uikit/uidiffabledatasource/wwdc-19-advances-in-ui-data-sources.md)
+    * [\[WWDC2019\] Advances in CollectionView Layout](wwdc/uikit/wwdc2019-advances-in-collectionview-layout.md)
 * [자료구조](<undefined/README (1).md>)
   * [Heap 자료구조](undefined/heap.md)
 * [Clean code](clean-code/README.md)
